@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ExampleController {
 
     @GetMapping("/hello")               /*informa o caminho a percorrer*/
-    @ResponseBody
+    @ResponseBody                       /*Quero que o retorno, do método hello, cujo retorno é String, seja devolvida como resposta desta requisição */
     public String hello() {
-        return "Hello!";
+        return "Hello!";                /*Hello será devolvida como resposta.*/
     }
 
 }
