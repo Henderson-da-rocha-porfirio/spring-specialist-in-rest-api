@@ -3,6 +3,9 @@ package com.tuyo.tuyofood.notificacao;
 import com.tuyo.tuyofood.modelo.Cliente;
 import org.springframework.stereotype.Component;
 
+/*Se eu quiser que o Spring gerencie essa classe, instancie e configure, e injete os objetos(beans) nela, é necessário "avisar" para ele:
+1. usando @Component(com isso estou dizendo que esta classe virou um componente Spring.*/
+
 @Component
 public class NotificadorEmail {
 

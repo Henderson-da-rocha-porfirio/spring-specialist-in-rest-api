@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AtivacaoClienteService {
 
+    /*Variavél instância dessa classe. Sempre estará nulo porque ninguém está atribuindo ela.*/
     private NotificadorEmail notificador;
 
     public void ativar(Cliente cliente) {
