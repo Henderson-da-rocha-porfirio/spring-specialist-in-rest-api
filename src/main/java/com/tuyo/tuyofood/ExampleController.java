@@ -10,7 +10,7 @@ public class ExampleController {
     @GetMapping("/hello")               /*informa o caminho a percorrer*/
     @ResponseBody                       /*Quero que o retorno, do método hello, cujo retorno é String, seja devolvida como resposta desta requisição */
     public String hello() {
-        return "Hello!";                /*Hello será devolvida como resposta.*/
+        return "Olá!";                /*Hello será devolvida como resposta.*/
     }
 
 }
