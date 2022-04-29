@@ -1,4 +1,4 @@
-# BEANS
+# Injeção de Dependência
 ## É o nome dado aos objetos gerenciados pelo container do Spring.
 ### 1. Bean(dependency ou dependencies): é o nome dado aos objetos gerenciados pelo container do Spring.
 ### 2. O Bean ele é instanciado, configurado e pode ser injetado em outros Beans que também são gerenciados pelo container do Spring.
