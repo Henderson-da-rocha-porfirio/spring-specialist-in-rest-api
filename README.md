@@ -1,4 +1,5 @@
-# Injeção de Dependência Com Interface
-### 1. Diminui o acoplamento.
-### 2. Fica mais fácil de utilizar outros Components. Mudar de Email para SMS por exemplo.
-### 3. Possibilidade de adicionar novas implementações.
+# Injeção de Dependência com Classe Config
+### Servir como definição para outros Beans.
+### Vantagens:
+#### 1. Configurar o Bean do Jeito que quisermos.
+#### 2. Transforma uma classe que depende do Spring Framework em uma classe Java pura.

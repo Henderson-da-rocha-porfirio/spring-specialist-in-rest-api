@@ -4,25 +4,38 @@ import com.tuyo.tuyofood.interfaces.notificacao.Notificador;
 import com.tuyo.tuyofood.modelo.Cliente;
 import org.springframework.stereotype.Component;
 
-/*Se eu quiser que o Spring gerencie essa classe, instancie e configure, e injete os objetos(beans) nela, é necessário "avisar" para ele:
-A. usando @Component(com isso estou dizendo que esta classe virou um componente Spring.
-1. Componentes Spring são instanciados por ele.
-2. Com isso já temos um Bean Spring instanciado.
-3. Se remover ou não tiver o "@Component" desta classe, dará o erro:
- - 'Consider defining a bean type': que significa que a injeção de dependência feita
- em "AtivacaoClienteService", não está encontrando essa 'injeção' feita nessa.
- 4. Gerando Interface: btn direito -> Refactor -> Extract Interface*/
+/*Instanciar e configurar o bean e torná-lo disponível para o container do Spring.
+* 1. Remove ou não adiciona o @Component*/
 
-@Component
+
 public class NotificadorEmail implements Notificador {
 
-    public NotificadorEmail() {
+    /*1. Início da implementação, criação de variável caixaAlta: Quando a caixaAlta estiver 'True' a mensagem ficará uppercase.
+     Quando 'False', daí não fará nada.*/
+    private boolean caixaAlta;
+
+    /*2. Variável: hostServidorSmtp(servidor de email teste) que será passada no construtor NotificadorEmail. */
+    private String hostServidorSmtp;
+
+    /*3. Passando hostServidorSmtp no parâmetro para recebê-lo.*/
+    public NotificadorEmail(String hostServidorSmtp) {
+        this.hostServidorSmtp = hostServidorSmtp;
         System.out.println("NotificadorEmail");
     }
 
     @Override
     public void notificar(Cliente cliente, String mensagem) {
-        System.out.printf("Notificando %s através do e-mail %s: %s\n",
-                cliente.getNome(), cliente.getEmail(), mensagem);
+        /*4. Criando o if que possibilita que seja executada o tipo da variável.*/
+        if (this.caixaAlta) {
+            mensagem = mensagem.toUpperCase();
+        }
+
+        /*5. Introduzindo na impressão hostServidorSmtp*/
+        System.out.printf("Notificando %s através do e-mail %s usando SMTP %s: %s\n",
+                cliente.getNome(), cliente.getEmail(), this.hostServidorSmtp, mensagem);
+    }
+    /*6. Criação do setCaixaAlta */
+    public void setCaixaAlta(boolean caixaAlta) {
+        this.caixaAlta = caixaAlta;
     }
 }
