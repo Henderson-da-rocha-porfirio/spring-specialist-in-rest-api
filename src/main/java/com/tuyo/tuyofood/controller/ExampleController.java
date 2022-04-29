@@ -1,4 +1,4 @@
-package com.tuyo.tuyofood;
+package com.tuyo.tuyofood.controller;
 
 import com.tuyo.tuyofood.modelo.Cliente;
 import com.tuyo.tuyofood.service.AtivacaoClienteService;
