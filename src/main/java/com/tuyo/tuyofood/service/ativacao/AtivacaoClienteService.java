@@ -1,4 +1,4 @@
-package com.tuyo.tuyofood.service;
+package com.tuyo.tuyofood.service.ativacao;
 
 import com.tuyo.tuyofood.interfaces.notificacao.Notificador;
 import com.tuyo.tuyofood.modelo.Cliente;
