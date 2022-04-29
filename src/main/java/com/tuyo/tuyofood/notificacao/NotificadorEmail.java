@@ -4,12 +4,19 @@ import com.tuyo.tuyofood.modelo.Cliente;
 import org.springframework.stereotype.Component;
 
 /*Se eu quiser que o Spring gerencie essa classe, instancie e configure, e injete os objetos(beans) nela, é necessário "avisar" para ele:
-1. usando @Component(com isso estou dizendo que esta classe virou um componente Spring.
-2. Componentes Spring são instanciados por ele.
-3. Com isso já temos um Bean Spring instanciado.*/
+A. usando @Component(com isso estou dizendo que esta classe virou um componente Spring.
+1. Componentes Spring são instanciados por ele.
+2. Com isso já temos um Bean Spring instanciado.
+3. Se remover ou não tiver o "@Component" desta classe, dará o erro:
+ - 'Consider defining a bean type': que significa que a injeção de dependência feita
+ em "AtivacaoClienteService", não está encontrando essa 'injeção' feita nessa. */
 
 @Component
 public class NotificadorEmail {
+
+    public NotificadorEmail() {
+        System.out.println("NotificadorEmail");
+    }
 
     public void notificar(Cliente cliente, String mensagem) {
         System.out.printf("Notificando %s através do e-mail %s: %s\n",
