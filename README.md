@@ -1,4 +1,4 @@
-# Injeção de Dependência com Classe Config
+# Injeção de Dependência Com Interface
 ### Servir como definição para outros Beans.
 ### Vantagens:
 #### 1. Configurar o Bean do Jeito que quisermos.
