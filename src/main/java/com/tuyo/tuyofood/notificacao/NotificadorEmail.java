@@ -4,7 +4,7 @@ import com.tuyo.tuyofood.interfaces.notificacao.Notificador;
 import com.tuyo.tuyofood.modelo.Cliente;
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 public class NotificadorEmail implements Notificador {
 
     @Override

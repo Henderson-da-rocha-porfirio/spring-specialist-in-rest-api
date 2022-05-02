@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AtivacaoClienteService {
     // @Autowired: 4
-    @Autowired(required = false)
+    @Autowired
     private Notificador notificador;
 
    /* private @Autowired Notificador notificador;
@@ -35,11 +35,11 @@ public class AtivacaoClienteService {
     public void ativar(Cliente cliente) {
         cliente.ativar();
 
-        if (notificador != null) {
+    /*    if (notificador != null) {*/
             notificador.notificar(cliente, "Seu cadastro no sistema está ativo!");
-        }  else {
+      /*  }  else {
             System.out.println("Não existe notificador, mas cliente foi ativado");
-        }
+        }*/
 
         //	@Autowired: 3
 //	public void setNotificador(Notificador notificador) {
