@@ -1,3 +1,4 @@
-# Injeção de Dependência com @Autowired.
-### Pontos de Injeção: É onde a gente pode injetar os nossos objetos dentro dos nossos Beans.
-### @Autowired: também informa que a dependência daquela classe passada no atributo é obrigatória.
+# Injeção de Dependência com Ambiguidade e Lista de Beans
+
+### É necessário evitar o erro de ambiguidade fazendo a desambiguação porque o Spring não sabe qual dos components é o principal.
+### 
