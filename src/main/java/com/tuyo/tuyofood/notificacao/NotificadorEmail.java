@@ -5,7 +5,7 @@ import com.tuyo.tuyofood.modelo.Cliente;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
-/*@Primary*/
+@NotificadorTipo(NotificadorUrgencia.SEM_URGENCIA)
 @Component
 public class NotificadorEmail implements Notificador {
 
