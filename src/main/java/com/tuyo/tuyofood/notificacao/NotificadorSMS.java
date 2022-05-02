@@ -2,10 +2,12 @@ package com.tuyo.tuyofood.notificacao;
 
 import com.tuyo.tuyofood.interfaces.notificacao.Notificador;
 import com.tuyo.tuyofood.modelo.Cliente;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
-@Primary
+/*@Qualifier("sms")*/
+@Qualifier("prioridade urgente")
 @Component
 public class NotificadorSMS implements Notificador {
 
