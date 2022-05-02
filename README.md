@@ -1,6 +1,3 @@
 # Injeção de Dependência com @Autowired.
-### Servir como definição para outros Beans: instanciando, gerenciando e configurando.
-### Vantagens:
-#### 1. Configurar o Bean do Jeito que quisermos.
-#### 2. Transforma uma classe que depende do Spring Framework em uma classe Java pura.
-#### 3. Ter várias configurações separadamente sem precisar 'sujar' tanto o código.
+### Pontos de Injeção: É onde a gente pode injetar os nossos objetos dentro dos nossos Beans.
+### @Autowired: também informa que a dependência daquela classe passada no atributo é obrigatória.

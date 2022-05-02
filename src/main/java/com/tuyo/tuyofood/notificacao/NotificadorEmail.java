@@ -4,10 +4,6 @@ import com.tuyo.tuyofood.interfaces.notificacao.Notificador;
 import com.tuyo.tuyofood.modelo.Cliente;
 import org.springframework.stereotype.Component;
 
-/*Instanciar e configurar o bean e torná-lo disponível para o container do Spring.
-* 1. Remove ou não adiciona o @Component*/
-
-
 @Component
 public class NotificadorEmail implements Notificador {
 
