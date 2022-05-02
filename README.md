@@ -1,4 +1,4 @@
-# Injeção de Dependência com Classes Configs específicas.
+# Injeção de Dependência com @Autowired.
 ### Servir como definição para outros Beans: instanciando, gerenciando e configurando.
 ### Vantagens:
 #### 1. Configurar o Bean do Jeito que quisermos.
