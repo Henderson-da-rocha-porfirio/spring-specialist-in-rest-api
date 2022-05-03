@@ -1,9 +1,6 @@
-package com.tuyo.tuyofood.service.cliente;
+package com.tuyo.tuyofood.service;
 
-import com.tuyo.tuyofood.interfaces.notificacao.Notificador;
 import com.tuyo.tuyofood.modelo.Cliente;
-import com.tuyo.tuyofood.notificacao.NotificadorTipo;
-import com.tuyo.tuyofood.notificacao.NotificadorUrgencia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
@@ -11,6 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AtivacaoClienteService {
 
+    /* Publicando eventos com Spring: ApplicationEventPublisher */
     @Autowired
     private ApplicationEventPublisher eventPublisher;
 

@@ -1,7 +1,7 @@
 package com.tuyo.tuyofood.controller;
 
 import com.tuyo.tuyofood.modelo.Cliente;
-import com.tuyo.tuyofood.service.cliente.AtivacaoClienteService;
+import com.tuyo.tuyofood.service.AtivacaoClienteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

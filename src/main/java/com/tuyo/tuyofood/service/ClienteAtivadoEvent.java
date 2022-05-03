@@ -1,4 +1,4 @@
-package com.tuyo.tuyofood.service.cliente;
+package com.tuyo.tuyofood.service;
 
 import com.tuyo.tuyofood.modelo.Cliente;
 
