@@ -1,1 +1,1 @@
-# Injeção de Dependência: Utilizando o Value
+# Injeção de Dependência: Utilizando @ConfigurationProperties
