@@ -1,3 +1,1 @@
-# Injeção de Dependência: Publicando e Consumindo Eventos
-## Tem como vantagem baixo acoplamento.
-### 
+# Injeção de Dependência: Utilizando o Value
