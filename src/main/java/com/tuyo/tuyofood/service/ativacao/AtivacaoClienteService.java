@@ -12,7 +12,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.swing.*;
 
-@Component
+/*@Component*/
 public class AtivacaoClienteService {
 
     @NotificadorTipo(NotificadorUrgencia.SEM_URGENCIA)
@@ -20,13 +20,13 @@ public class AtivacaoClienteService {
     private Notificador notificador;
 
     /*Mostra que o notificador já foi injetado*/
-    @PostConstruct
+    /*@PostConstruct*/
     public void init() {
         System.out.println("INIT " + notificador);
     }
 
     /*Para o Constainer do Spring*/
-    @PreDestroy
+    /*@PreDestroy*/
     public void destroy() {
         System.out.println("DESTROY");
     }
