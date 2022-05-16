@@ -2,6 +2,8 @@ package com.tuyo.tuyofood.domain.entity;
 
 import javax.persistence.*;
 
+/* Mapeando entidades */
+
 @Entity
 public class Kitchen {
 
