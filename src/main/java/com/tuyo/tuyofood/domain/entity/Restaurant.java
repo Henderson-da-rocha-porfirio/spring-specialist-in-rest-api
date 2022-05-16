@@ -3,6 +3,8 @@ package com.tuyo.tuyofood.domain.entity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+/* Mapeando entidades */
+
 @Entity
 public class Restaurant {
 
