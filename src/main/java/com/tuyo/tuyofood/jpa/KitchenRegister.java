@@ -27,5 +27,11 @@ public class KitchenRegister {
     public Kitchen salvar(Kitchen kitchen) {
         return manager.merge(kitchen);
     }
+
+    @Transactional
+    public void remover(Kitchen kitchen) {
+        kitchen = buscar(kitchen.getId());
+        manager.remove(kitchen);
+    }
 }
 

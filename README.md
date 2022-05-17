@@ -1,1 +1,1 @@
-# Update
+# Removendo Objetos no Database
