@@ -1,7 +1,4 @@
-# RESTful API
-### 1. REST: É o estilo arquitetural que possui as Constraints. Isto é, a especificação.
-### 2. RESTful API: É uma API desenvolvida em conformidade 100% com as Constraints.
-## *** CONSTRAINTS - As melhores práticas em REST
+# CONSTRAINTS - As melhores práticas em REST
 ### 1. O REST formaliza um conjunto de Constraints:
 #### A. Client <-> Server:
 ##### i. Tem que evoluir separadamente sem qualquer dependência entre eles.
