@@ -28,7 +28,6 @@ public class KitchenController {
         return new KitchensXmlWrapper(kitchenRepository.listar());
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
     @GetMapping("/{kitchenId}")
     public Kitchen buscar(@PathVariable("kitchenId") Long kitchenId) {
         return kitchenRepository.buscar(kitchenId);
