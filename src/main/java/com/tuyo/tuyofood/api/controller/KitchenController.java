@@ -17,7 +17,8 @@ import java.util.List;
  *  2. @RequestBody: Vinculação do corpo da requisição com o objeto em questão "Kitchen" (instanciar e fazer o Bind)
  *  3. @ResponseStatus: customizando o status
  *  4. @PathVariable: Faz o Bind
- *  5. BeanUtils.copyProperties: faz com que os valores das propriedades de Kitchen sejam passados para KitchenAtual. Isso economiza código sem precisar jogar get ou set */
+ *  5. BeanUtils.copyProperties: faz com que os valores das propriedades de Kitchen sejam passados para KitchenAtual. Isso economiza código sem precisar jogar get ou set
+ *  6. DataIntegrityViolationException: trata uma excecao relacionada a violação do database */
 
 @RestController
 @RequestMapping(value = "/kitchens")
