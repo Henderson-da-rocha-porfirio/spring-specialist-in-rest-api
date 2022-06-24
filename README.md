@@ -7,5 +7,5 @@
 ### 5. O IOC Realiza a inversão de controle na injeção de dependência, conhecido como Spring Context.
 ### 6. Quando ele é inicializado, ele instancia os Beans que ele deve gerenciar.
 ### 7. O Container de inversão de Controle(IOC) do Spring é representada pela Interface ApplicationContext.
-### 8. Usa-se @Component ou não.
+### 8. Usa-se @Component para ter um Objeto/Bean Spring Injetado.
 
