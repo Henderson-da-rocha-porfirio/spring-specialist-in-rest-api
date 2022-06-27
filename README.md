@@ -1,4 +1,4 @@
-# QUERY-createQuery
+# @RequestParam
 
 ## URL para teste no PostMan:
 ### 1. Buscando pelo nome exato:
