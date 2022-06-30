@@ -1,4 +1,5 @@
-# SPRING_DATA_JPA_Repository
+# String.format: passar String em forma de código "%d"
+## Exemplo: %d = integer (incl. byte, short, int, long, bigint)	Decimal Integer.
 
 ## 1. JPA e Hibernate:
 ### — A. Uma Interface Repository ( Repositório Orientado a persistência ):
