@@ -1,4 +1,4 @@
-# SPRING_DATA_JPA_OPTIONAL_Com_IsEmpty_IsPresent_e_.get(_)
+# SPRING_DATA_JPA_OPTIONAL_Usando_Lambda_->
 
 ## 1. JPA e Hibernate:
 ### — A. Uma Interface Repository ( Repositório Orientado a persistência ):
