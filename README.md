@@ -1,4 +1,4 @@
-# @Param
+# @Query_sem_metodos_find
 
 ## 1. JPA e Hibernate:
 ### — A. Uma Interface Repository ( Repositório Orientado a persistência ):
