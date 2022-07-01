@@ -1,4 +1,4 @@
-# @Param
+# SPRING_DATA_JPA_@Query_@Param_JPQL
 
 ## 1. JPA e Hibernate:
 ### — A. Uma Interface Repository ( Repositório Orientado a persistência ):
