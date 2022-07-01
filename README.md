@@ -1,4 +1,4 @@
-# SPRING_DATA_JPA_Repository
+# SPRING_DATA_JPA_QUERY_PREFIXOS
 
 ## 1. JPA e Hibernate:
 ### — A. Uma Interface Repository ( Repositório Orientado a persistência ):
@@ -48,9 +48,14 @@
 ## Keywords Spring DAta JPA:
 ### Link: https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation
 
-## Prefixos que tem a mesma funcionalidade:
+##  i. Todos estes prefixos, de métodos de consulta, funcionam do mesmo jeito do find:
 ### find
 ### query
 ### read
 ### get
 ### stream
+## ii. Outros prefixos como "count" e "exists":
+### Verificar se um registro exist (true e false) e count é usado para dar retorno númerico.
+## iii. Flags são usadas entre o "find" e o "Id" para limitar o resultado da consulta:
+### First
+### Top2
