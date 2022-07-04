@@ -1,1 +1,2 @@
-# SPRING_DATA_JPA_DDD_SPECIFICATION
+# SPEC
+## Verificar o Spec nos repositórios.
