@@ -1,2 +1,2 @@
-# Repository Base Customizado: JpaRepository Customizado
-## Criado para ser uma nova base diferente da base principal SimpleJpaRepository, caso seja necessário introduzir um método inexistente.
+# @NoRepositoryBean
+## informa que esta interface não deve ser levada em conta afim de instanciação de um repositório pelo Spring Data JPA.
