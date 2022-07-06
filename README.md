@@ -1,1 +1,1 @@
-# joinColumns
+# inverseJoinColumns
