@@ -43,8 +43,9 @@ import java.util.List;
 * com uma hora e data atual.
 *  17. @UpdateTimestamp: anotação do hibernate. Informa que a hora e data atual deve ser atribuída a
 * propriedade dataAtualizacao sempre que a propriedade for atualizada.
-*  18. columnDefinition = "datetime(6)": mostra a precisão.
+*  18. columnDefinition = "datetime(6)": mostra a precisão. (usar timestamp no caso do postgresql)
 *  18. columnDefinition = "datetime": ele não cria precisão de data com os milisegundos.
+* (usar timestamp no caso do postgresql)
 * */
 
 @Data
