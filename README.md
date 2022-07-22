@@ -1,4 +1,5 @@
-# ColumnDefinition
+# Definindo o Tipo da Coluna Com ColumnDefinition
+## ColumnDefinition
 ## Mostra a precisão de uma coluna padrão.
 
 ### 1. Ao criar uma entidade
