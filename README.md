@@ -1,2 +1,2 @@
-# JPA_E_HIBERNATE_MUITOS_PARA_MUITOS
-## 
+# ColumnDefinition Com Integer
+## Evitando o erro de tipos no Postgresql.
