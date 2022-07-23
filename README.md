@@ -1,4 +1,4 @@
-# Fetch
+# FetchType
 ### - Exemplos:
 ````
 @ManyToOne(fetch = FetchType.LAZY)
