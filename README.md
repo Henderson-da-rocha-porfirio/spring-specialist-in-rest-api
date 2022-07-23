@@ -1,2 +1,4 @@
-# @ManyToOne(fetch = FetchType.EAGER)
-## Não precisa colocar porque @ManyToOne já é EAGER por padrão.
+# @JsonIgnoreProperties
+## ignora as propriedades dentro da entidade em questão.
+## @JsonIgnoreProperties("hibernateLazyInitializer") = ignora apenas uma propriedade.
+## @JsonIgnoreProperties({"hibernateLazyInitializer", "hjsjhsj"}) =  Incluindo mais de uma exemplo.
