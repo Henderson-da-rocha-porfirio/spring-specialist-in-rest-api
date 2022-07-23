@@ -17,22 +17,31 @@ import java.util.Optional;
  *  4. Consultas:
  *  a. @Query: usando JPQL
  *  b. Find: usando prefixos e flags
- *  c. Externas: META-INF/orm.xml   */
+ *  c. Externas: META-INF/orm.xml
+ *  5. r = é um alias  */
+
+/*@Repository
+public interface RestaurantRepository extends JpaRepository<Restaurant, Long>, RestaurantRepositoryQueries,
+        JpaSpecificationExecutor<Restaurant> {*/
 
 @Repository
 public interface RestaurantRepository
         extends CustomJpaRepository<Restaurant, Long>, RestaurantRepositoryQueries,
         JpaSpecificationExecutor<Restaurant> {
-/*@Repository
-public interface RestaurantRepository extends JpaRepository<Restaurant, Long>, RestaurantRepositoryQueries,
-        JpaSpecificationExecutor<Restaurant> {*/
+
+    // Errata: se um restaurant não tiver nenhuma forma de pagamento associada a ele,
+    // esse restaurant não será retornado usando JOIN FETCH r.paymentForms.
+    // Para resolver isso, temos que usar LEFT JOIN FETCH r.paymentForms
+    // @Query("from Restaurant r join fetch r.cozinha join fetch r.paymentForms")
+    @Query("from Restaurant r join fetch r.kitchen left join fetch r.paymentForms")
+    List<Restaurant> findAll();
 
     List<Restaurant> findByTaxaFreteBetween(BigDecimal taxaInicial, BigDecimal taxaFinal);
 
-    //    @Query("from Restaurant where nome like %:nome% and kitchen.id = :id")
+ // @Query("from Restaurant where nome like %:nome% and kitchen.id = :id")
     List<Restaurant> consultarPorNome(String nome, @Param("id") Long kitchen);
 
-//    List<Restaurant> findByNomeContainingAndKitchenId(String nome, Long kitchen);
+//  List<Restaurant> findByNomeContainingAndKitchenId(String nome, Long kitchen);
 
     Optional<Restaurant> findFirstRestaurantByNomeContaining(String nome);
 

@@ -64,7 +64,7 @@ public class Restaurant {
     @Column(name = "taxa_frete", nullable = false)
     private BigDecimal taxaFrete;
 
-    @JsonIgnore
+ // @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "kitchen_id", nullable = false)
     private Kitchen kitchen;
@@ -95,7 +95,7 @@ public class Restaurant {
     @Column(nullable = false, columnDefinition = "datetime")
     private LocalDateTime dataAtualizacao;*/
 
-    @JsonIgnore
+ // @JsonIgnore
     @ManyToMany
     @JoinTable(name = "restaurant_payment_form",
             joinColumns = @JoinColumn(name = "restaurant_id"),
