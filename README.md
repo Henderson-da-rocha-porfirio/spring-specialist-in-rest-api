@@ -1,2 +1,2 @@
-# @ManyToOne(fetch = FetchType.LAZY)
-## Convertendo EAGER para LAZY. Ou seja, só carregue se eu precisar.
+# @ManyToOne(fetch = FetchType.EAGER)
+## Não precisa colocar porque @ManyToOne já é EAGER por padrão.
