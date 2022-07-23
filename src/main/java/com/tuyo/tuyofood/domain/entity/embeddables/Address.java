@@ -1,9 +1,6 @@
 package com.tuyo.tuyofood.domain.entity.embeddables;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import com.tuyo.tuyofood.domain.entity.City;
 import lombok.Data;
@@ -33,7 +30,7 @@ public class Address {
     @Column(name = "address_bairro")
     private String bairro;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "address_city_id")
     private City city;
 

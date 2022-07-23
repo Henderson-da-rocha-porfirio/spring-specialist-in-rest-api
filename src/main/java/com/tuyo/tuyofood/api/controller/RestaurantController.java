@@ -19,11 +19,11 @@ import java.util.Map;
 import java.util.Optional;
 
 /* 1. ObjectMapper: converte objetos json em java e vice-versa
-*  2. paymentForms: é adicionado para que as outras formas não sejam deletadas sem necessidade.
-*  3. address: é adicionado para que os outros dados não sejam deletados sem necessidade.
-*  4. dataCadastro: também sofre o mesmo processo de address e paymentForms.
-*  5. O uso dos três acima como parâmetro, evita o erro:
-*  'ERROR: null value in column "data_cadastro" violates not-null constraint' */
+ *  2. paymentForms: é adicionado para que as outras formas não sejam deletadas sem necessidade.
+ *  3. address: é adicionado para que os outros dados não sejam deletados sem necessidade.
+ *  4. dataCadastro: também sofre o mesmo processo de address e paymentForms.
+ *  5. O uso dos três acima como parâmetro, evita o erro:
+ *  'ERROR: null value in column "data_cadastro" violates not-null constraint' */
 
 @RestController
 @RequestMapping(value = "/restaurants")
@@ -35,26 +35,38 @@ public class RestaurantController {
     @Autowired
     private RestaurantRegisterService restaurantRegisterService;
 
-    @GetMapping
-    public List<Restaurant> listar() {
-        return restaurantRepository.findAll();
-    }
-
-/*  Estratégia de Lazy Loading:
+    // Estratégia de Lazy Loading:
 
     @GetMapping
     public List<Restaurant> listar() {
         List<Restaurant> restaurants = restaurantRepository.findAll();
 
         //Formas de pagamento para o primeiro restaurant que está no índice 0 (id = 0)
+       /*
+       System.out.println("O nome de kitchen é:");
+        System.out.println(restaurants.get(0).getKitchen().getNome());
+        */
+
+        /*
+        //Formas de pagamento para o primeiro restaurant que está no índice 0 (id = 0)
         System.out.println(restaurants.get(0).getNome());
         restaurants.get(0).getPaymentForms().forEach(System.out::println);
+        */
 
+        /*
         //Formas de pagamento para o segundo restaurant que está no índice 1 (id = 1)
         System.out.println(restaurants.get(1).getNome());
         restaurants.get(1).getPaymentForms().forEach(System.out::println);
+        */
 
         return restaurants;
+    }
+
+    // Estratégia de Lazy Loading comentando ou removendo(deixando so para exemplo):
+
+    /*@GetMapping
+    public List<Restaurant> listar() {
+        return restaurantRepository.findAll();
     }*/
 
     @GetMapping("/{restaurantId}")

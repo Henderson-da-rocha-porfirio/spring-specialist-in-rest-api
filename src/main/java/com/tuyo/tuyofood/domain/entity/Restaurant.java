@@ -46,6 +46,11 @@ import java.util.List;
 * propriedade dataAtualizacao sempre que a propriedade for atualizada.
 *  18. columnDefinition = "datetime(6)": mostra a precisão.
 *  18. columnDefinition = "datetime": ele não cria precisão de data com os milisegundos.
+*  19. @ManyToOne(fetch = FetchType.EAGER) = não precisa colocar porque @ManyToOne já é EAGER por padrão.
+*  20. @ManyToOne(fetch = FetchType.LAZY) = convertendo EAGER para LAZY. Ou seja, só carregue se eu precisar.
+*  21. @JsonIgnoreProperties = ignora as propriedades dentro de Kitchen.
+*  22. @JsonIgnoreProperties("hibernateLazyInitializer") = ignora apenas uma propriedade.
+*  23. @JsonIgnoreProperties({"hibernateLazyInitializer", "hjsjhsj"}) =  Incluindo mais de uma exemplo.
 * */
 
 @Data
@@ -64,8 +69,9 @@ public class Restaurant {
     @Column(name = "taxa_frete", nullable = false)
     private BigDecimal taxaFrete;
 
+//  @JsonIgnoreProperties("hibernateLazyInitializer")
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "kitchen_id", nullable = false)
     private Kitchen kitchen;
 
