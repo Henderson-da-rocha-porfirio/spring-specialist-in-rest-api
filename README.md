@@ -1,14 +1,10 @@
-# Eager Loading - carregamento ansioso/antecipado
-## ToOne - Por padrão tudo que termina com "ToOne" usa a estratégia Eager Loading.
-### 1. Toda vez que uma instância de Restaurant é carregada a partir do banco de dados, ele vai carregar as associações que usam Eager Loading, no caso da propriedade Kitchen que está com @ManyToOne dentro de Restaurant.
-### 2. Está buscando 'ansiosasemente' uma Kitchen:
+# Lazy Loading - carregamento preguiçoso/só funciona quando necessário
+## ToMany - Por padrão tudo que termina com "ToMany" usa a estratégia Lazy Loading, ou seja, uma estratégia de carregamento preguiçosa.
+### 1. É um carregamento por demanda. Precisou, o JPA vai dar um jeito de buscar o que preciso:
 ````
-	@ManyToOne
-    @JoinColumn(name = "kitchen_id", nullable = false)
-    private Kitchen kitchen;
+	@ManyToMany
+    @JoinTable(name = "restaurant_payment_form",
+            joinColumns = @JoinColumn(name = "restaurant_id"),
+            inverseJoinColumns = @JoinColumn(name = "payment_form_id"))
+    private List<PaymentForm> paymentForms = new ArrayList<>();
 ````
-### 3. Associação Eager pode ser apenas um select ou não. Depende da implementação.
-#### a. nullable = false:
-##### — significa not null no database. Ou seja, se Kitchen é not null (não pode estar nulo), então não pode existir um Restaurant sem ter uma associação de Kitchen. E sempre existirá uma Kitchen para um Restaurant.
-##### — certamente faz um inner join (junção entre duas chaves correspondentes) com muita segurança entre Restaurant e Kitchen.
-#### a. nullable = false: ele faz um leftjoin devido City não ter um nullable = false. Porque ele põe por padrão um 'true'.
