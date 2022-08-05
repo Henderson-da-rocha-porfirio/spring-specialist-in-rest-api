@@ -1,4 +1,4 @@
-# FLYWAY_POOL_DE_CONEXOES
+# Hikari_Pool_de_conexoes_Spring
 ### *** Dica importante ***
 ````
 Sempre criar a tabela antes no PG Admin (ou outro que use) e verifique os acertos e erros. Ficando certo, copie
