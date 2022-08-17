@@ -21,10 +21,18 @@ import org.springframework.stereotype.Service;
  * por isso não posso excluir e lança essa exceção.
  *  7. EntidadeEmUsoException: é uma exceção de negócio.
  *  8. String.format: passar String em forma de código "%d"
- *  9. %d = integer (incl. byte, short, int, long, bigint)	Decimal Integer. */
+ *  9. %d = integer (incl. byte, short, int, long, bigint)	Decimal Integer.
+ * 10. orElseThrow = retorna o objeto que está dentro do Optional
+ * 11. Constant: seleciona a mensagem -> btn right -> Refactor -> Introduce Constant*/
 
 @Service
 public class KitchenRegisterService {
+
+    public static final String MSG_KITCHEN_NAO_ENCONTRADA
+            = "There is no kitchen registration with code %d";
+
+    public static final String MSG_KITCHEN_EM_USO
+            = "Code kitchen %d cannot be removed as it is in use";
 
     @Autowired
     private KitchenRepository kitchenRepository;
@@ -39,11 +47,16 @@ public class KitchenRegisterService {
 
         } catch (EmptyResultDataAccessException e) {
             throw new EntidadeNaoEncontradaException(
-                    String.format("There is no kitchen registration with code %d", kitchenId));
+                    String.format(MSG_KITCHEN_NAO_ENCONTRADA, kitchenId));
 
         } catch (DataIntegrityViolationException e) {
             throw new EntidadeEmUsoException(
-                    String.format("Code kitchen %d cannot be removed as it is in use", kitchenId));
+                    String.format(MSG_KITCHEN_EM_USO, kitchenId));
         }
+    }
+    public Kitchen buscarOuFalhar(Long kitchenId) {
+        return kitchenRepository.findById(kitchenId)
+                .orElseThrow(() -> new EntidadeNaoEncontradaException(
+                        String.format(MSG_KITCHEN_NAO_ENCONTRADA, kitchenId)));
     }
 }
