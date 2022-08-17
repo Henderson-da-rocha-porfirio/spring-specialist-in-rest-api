@@ -72,20 +72,6 @@ public class KitchenController {
         return ResponseEntity.notFound().build();
     }
 
-   /* @DeleteMapping("/{kitchenId}")
-    public ResponseEntity<Kitchen> remover(@PathVariable Long kitchenId) {
-        try {
-            kitchenRegisterService.excluir(kitchenId);
-            return ResponseEntity.noContent().build();
-
-        } catch (EntidadeNaoEncontradaException e) {
-            return ResponseEntity.notFound().build();
-
-        } catch (EntidadeEmUsoException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
-        }
-    }*/
-
     @DeleteMapping("/{kitchenId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void remover(@PathVariable Long kitchenId) {
