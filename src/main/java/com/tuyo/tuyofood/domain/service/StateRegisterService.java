@@ -2,7 +2,7 @@ package com.tuyo.tuyofood.domain.service;
 
 import com.tuyo.tuyofood.domain.entity.State;
 import com.tuyo.tuyofood.domain.exception.EntidadeEmUsoException;
-import com.tuyo.tuyofood.domain.exception.EntidadeNaoEncontradaException;
+import com.tuyo.tuyofood.domain.exception.StateNaoEncontradoException;
 import com.tuyo.tuyofood.domain.repository.StateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class StateRegisterService {
 
     private static final String MSG_ESTADO_EM_USO = "Estado de código %d não pode ser removido, pois está em uso";
-    private static final String MSG_ESTADO_NAO_ENCONTRADO = "Não existe um cadastro de estado com código %d";
+
     @Autowired
     private StateRepository stateRepository;
 
@@ -26,8 +26,7 @@ public class StateRegisterService {
             stateRepository.deleteById(stateId);
 
         } catch (EmptyResultDataAccessException e) {
-            throw new EntidadeNaoEncontradaException(
-                    String.format(MSG_ESTADO_NAO_ENCONTRADO, stateId));
+            throw new StateNaoEncontradoException(stateId);
 
         } catch (DataIntegrityViolationException e) {
             throw new EntidadeEmUsoException(
@@ -37,7 +36,6 @@ public class StateRegisterService {
 
     public State buscarOuFalhar(Long stateId) {
         return stateRepository.findById(stateId)
-                .orElseThrow(() -> new EntidadeNaoEncontradaException(
-                        String.format(MSG_ESTADO_NAO_ENCONTRADO, stateId)));
+                .orElseThrow(() -> new StateNaoEncontradoException(stateId));
     }
 }

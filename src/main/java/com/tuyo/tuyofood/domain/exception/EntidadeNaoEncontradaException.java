@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  *  2. reason: mensagem customizada se quiser.
  *  3. value ou code é a mesma coisa: code = HttpStatus ...
  *  4. ResponseStatusException: esta classe anula a necessidade de usar @ResponseStatus aqui.
- *  5. Vantagem é ter uma única classe exception com vários status http*/
+ *  5. Vantagem é ter uma única classe exception com vários status http
+ *  6. super: aqui é o RuntimeException. */
 
 @ResponseStatus(value = HttpStatus.NOT_FOUND) //, reason = "Entidade não encontrada")
-public class EntidadeNaoEncontradaException extends RuntimeException {
+public class EntidadeNaoEncontradaException extends BusinessException {
 
     private static final long serialVersionUID = 1L;
 

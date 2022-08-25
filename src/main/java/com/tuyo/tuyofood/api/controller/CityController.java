@@ -3,7 +3,7 @@ package com.tuyo.tuyofood.api.controller;
 
 import com.tuyo.tuyofood.domain.entity.City;
 import com.tuyo.tuyofood.domain.exception.BusinessException;
-import com.tuyo.tuyofood.domain.exception.EntidadeNaoEncontradaException;
+import com.tuyo.tuyofood.domain.exception.StateNaoEncontradoException;
 import com.tuyo.tuyofood.domain.repository.CityRepository;
 import com.tuyo.tuyofood.domain.service.CityRegisterService;
 import org.springframework.beans.BeanUtils;
@@ -13,18 +13,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/* 1. throw: relançar
-*  2. catch: capturar
-*  3. Não pode escolher uma exception pensando no código Status HTTP na camada de domínio. Mas na de controller não
-* tem problema.
-*  4.  try {
-            return cityRegisterService.salvar(city);
-        } catch (EntidadeNaoEncontradaException e) {
-            throw new BusinessException(e.getMessage());
-        }
-*  =>  Quando tenta salvar uma cidade que não existe, ele captura EntidadeNaoEncontradaException
-* e relança como BusinessException.
-*  5. Exception Granular: É melhor trabalhar na camada de domínio, exceptions com granularidade mais fina (exceptions mais específicas)*/
+/* 1. Exception Granular: É melhor trabalhar na camada de domínio, exceptions com granularidade
+ * mais fina (exceptions mais específicas)
+ *  2. Importante: não deixar buscarOuFalhar e salvar dentro do try porque dará erro. Cada método tem sua tratativa
+ * específica. Mas no caso de ter uma exception específica, não tem problema como mostrado abaixo.
+ *  3. Rastreabilidade de Exception = mensagem e causa: BusinessException(e.getMessage(), e):
+ * a. BusinessException(e.getMessage()): mensagem.
+ * b. BusinessException(e.getMessage(), e), o 'e' é causa.
+ * c. é preciso criar a causa na exception correspondente: BusinessException. */
 
 @RestController
 @RequestMapping(value = "/cities")
@@ -52,22 +48,22 @@ public class CityController {
     public City adicionar(@RequestBody City city) {
         try {
             return cityRegisterService.salvar(city);
-        } catch (EntidadeNaoEncontradaException e) {
-            throw new BusinessException(e.getMessage());
+        } catch (StateNaoEncontradoException e) {
+            throw new BusinessException(e.getMessage(), e);
         }
     }
 
     @PutMapping("/{cityId}")
     public City atualizar(@PathVariable Long cityId,
                           @RequestBody City city) {
-        City cityAtual = cityRegisterService.buscarOuFalhar(cityId);
-
-        BeanUtils.copyProperties(city, cityAtual, "id");
-
         try {
+            City cityAtual = cityRegisterService.buscarOuFalhar(cityId);
+
+            BeanUtils.copyProperties(city, cityAtual, "id");
+
             return cityRegisterService.salvar(cityAtual);
-        } catch (EntidadeNaoEncontradaException e) {
-            throw new BusinessException(e.getMessage());
+        } catch (StateNaoEncontradoException e) {
+            throw new BusinessException(e.getMessage(), e);
         }
 
     }

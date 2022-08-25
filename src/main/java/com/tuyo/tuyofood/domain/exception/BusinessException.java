@@ -3,6 +3,8 @@ package com.tuyo.tuyofood.domain.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+/* 1. Throwable: classe pai de todas as exceptions. */
+
 @ResponseStatus(value = HttpStatus.BAD_REQUEST)
 public class BusinessException extends RuntimeException {
 
@@ -10,5 +12,9 @@ public class BusinessException extends RuntimeException {
 
     public BusinessException(String message) {
         super(message);
+    }
+
+    public BusinessException(String mensage, Throwable causa) {
+        super(mensage, causa);
     }
 }
