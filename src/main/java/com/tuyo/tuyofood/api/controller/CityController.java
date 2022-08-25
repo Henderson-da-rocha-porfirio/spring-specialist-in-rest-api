@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/* 1. throw: relançar
+*  2. catch: capturar
+*  3. Não pode escolher uma exception pensando no código Status HTTP na camada de domínio. Mas na de controller não tem problema. */
+
 @RestController
 @RequestMapping(value = "/cities")
 public class CityController {
@@ -37,7 +41,11 @@ public class CityController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public City adicionar(@RequestBody City city) {
-        return cityRegisterService.salvar(city);
+        try {
+            return cityRegisterService.salvar(city);
+        } catch (EntidadeNaoEncontradaException e) {
+            throw new BusinessException(e.getMessage());
+        }
     }
 
     @PutMapping("/{cityId}")
