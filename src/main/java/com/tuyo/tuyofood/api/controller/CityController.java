@@ -23,7 +23,8 @@ import java.util.List;
             throw new BusinessException(e.getMessage());
         }
 *  =>  Quando tenta salvar uma cidade que não existe, ele captura EntidadeNaoEncontradaException
-* e relança como BusinessException. */
+* e relança como BusinessException.
+*  5. Exception Granular: É melhor trabalhar na camada de domínio, exceptions com granularidade mais fina (exceptions mais específicas)*/
 
 @RestController
 @RequestMapping(value = "/cities")

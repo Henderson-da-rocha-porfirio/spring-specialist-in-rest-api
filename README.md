@@ -1,1 +1,1 @@
-# EXCECOES_Constants_para_Messagens_HTTP
+# EXCECOES_Granular_Exceptions - exceptions mais específicas
