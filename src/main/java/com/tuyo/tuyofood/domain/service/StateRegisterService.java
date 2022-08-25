@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class StateRegisterService {
 
-    private static final String MSG_ESTADO_NAO_ENCONTRADO = "Estado de código %d não pode ser removido, pois está em uso";
-    private static final String MSG_ESTADO_EM_USO = "Não existe um cadastro de estado com código %d";
+    private static final String MSG_ESTADO_EM_USO = "Estado de código %d não pode ser removido, pois está em uso";
+    private static final String MSG_ESTADO_NAO_ENCONTRADO = "Não existe um cadastro de estado com código %d";
     @Autowired
     private StateRepository stateRepository;
 
