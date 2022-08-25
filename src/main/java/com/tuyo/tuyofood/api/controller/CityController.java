@@ -15,7 +15,15 @@ import java.util.List;
 
 /* 1. throw: relançar
 *  2. catch: capturar
-*  3. Não pode escolher uma exception pensando no código Status HTTP na camada de domínio. Mas na de controller não tem problema. */
+*  3. Não pode escolher uma exception pensando no código Status HTTP na camada de domínio. Mas na de controller não
+* tem problema.
+*  4.  try {
+            return cityRegisterService.salvar(city);
+        } catch (EntidadeNaoEncontradaException e) {
+            throw new BusinessException(e.getMessage());
+        }
+*  =>  Quando tenta salvar uma cidade que não existe, ele captura EntidadeNaoEncontradaException
+* e relança como BusinessException. */
 
 @RestController
 @RequestMapping(value = "/cities")

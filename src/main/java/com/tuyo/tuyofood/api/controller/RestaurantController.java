@@ -2,6 +2,8 @@ package com.tuyo.tuyofood.api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tuyo.tuyofood.domain.entity.Restaurant;
+import com.tuyo.tuyofood.domain.exception.BusinessException;
+import com.tuyo.tuyofood.domain.exception.EntidadeNaoEncontradaException;
 import com.tuyo.tuyofood.domain.repository.RestaurantRepository;
 import com.tuyo.tuyofood.domain.service.RestaurantRegisterService;
 import org.springframework.beans.BeanUtils;
@@ -44,7 +46,11 @@ public class RestaurantController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Restaurant adicionar(@RequestBody Restaurant restaurant) {
-        return restaurantRegisterService.salvar(restaurant);
+        try {
+            return restaurantRegisterService.salvar(restaurant);
+        } catch (EntidadeNaoEncontradaException e) {
+            throw new BusinessException(e.getMessage());
+        }
     }
 
     @PutMapping("/{restaurantId}")
@@ -55,7 +61,11 @@ public class RestaurantController {
         BeanUtils.copyProperties(restaurant, restaurantAtual,
                 "id", "formasPagamento", "endereco", "dataCadastro", "produtos");
 
-        return restaurantRegisterService.salvar(restaurantAtual);
+        try {
+            return restaurantRegisterService.salvar(restaurantAtual);
+        } catch (EntidadeNaoEncontradaException e) {
+            throw new BusinessException(e.getMessage());
+        }
     }
 
     @PatchMapping("/{restaurantId}")
