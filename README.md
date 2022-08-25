@@ -1,1 +1,1 @@
-# Constants - Usando constants para criar mensagens padronizadas
+# EXCECOES_Constants_para_Messagens_HTTP
