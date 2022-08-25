@@ -2,6 +2,8 @@ package com.tuyo.tuyofood.api.controller;
 
 
 import com.tuyo.tuyofood.domain.entity.City;
+import com.tuyo.tuyofood.domain.exception.BusinessException;
+import com.tuyo.tuyofood.domain.exception.EntidadeNaoEncontradaException;
 import com.tuyo.tuyofood.domain.repository.CityRepository;
 import com.tuyo.tuyofood.domain.service.CityRegisterService;
 import org.springframework.beans.BeanUtils;
@@ -40,12 +42,17 @@ public class CityController {
 
     @PutMapping("/{cityId}")
     public City atualizar(@PathVariable Long cityId,
-                            @RequestBody City city) {
+                          @RequestBody City city) {
         City cityAtual = cityRegisterService.buscarOuFalhar(cityId);
 
         BeanUtils.copyProperties(city, cityAtual, "id");
 
-        return cityRegisterService.salvar(cityAtual);
+        try {
+            return cityRegisterService.salvar(cityAtual);
+        } catch (EntidadeNaoEncontradaException e) {
+            throw new BusinessException(e.getMessage());
+        }
+
     }
 
     @DeleteMapping("/{cityId}")
