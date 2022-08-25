@@ -1,14 +1,11 @@
 package com.tuyo.tuyofood.api.controller;
 
 import com.tuyo.tuyofood.domain.entity.State;
-import com.tuyo.tuyofood.domain.exception.EntidadeEmUsoException;
-import com.tuyo.tuyofood.domain.exception.EntidadeNaoEncontradaException;
 import com.tuyo.tuyofood.domain.repository.StateRepository;
 import com.tuyo.tuyofood.domain.service.StateRegisterService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,14 +26,8 @@ public class StateController {
     }
 
     @GetMapping("/{stateId}")
-    public ResponseEntity<State> buscar(@PathVariable Long stateId) {
-        State state = stateRepository.findById(stateId).orElse(null);
-
-        if (state != null) {
-            return ResponseEntity.ok(state);
-        }
-
-        return ResponseEntity.notFound().build();
+    public State buscar(@PathVariable Long stateId) {
+        return stateRegisterService.buscarOuFalhar(stateId);
     }
 
     @PostMapping
@@ -46,32 +37,18 @@ public class StateController {
     }
 
     @PutMapping("/{stateId}")
-    public ResponseEntity<State> atualizar(@PathVariable Long stateId,
-                                            @RequestBody State state) {
-        State stateAtual = stateRepository.findById(stateId).orElse(null);
+    public State atualizar(@PathVariable Long stateId,
+                            @RequestBody State state) {
+        State stateAtual = stateRegisterService.buscarOuFalhar(stateId);
 
-        if (stateAtual != null) {
-            BeanUtils.copyProperties(state, stateAtual, "id");
+        BeanUtils.copyProperties(state, stateAtual, "id");
 
-            stateAtual = stateRegisterService.salvar(stateAtual);
-            return ResponseEntity.ok(stateAtual);
-        }
-
-        return ResponseEntity.notFound().build();
+        return stateRegisterService.salvar(stateAtual);
     }
 
     @DeleteMapping("/{stateId}")
-    public ResponseEntity<?> remover(@PathVariable Long stateId) {
-        try {
-            stateRegisterService.excluir(stateId);
-            return ResponseEntity.noContent().build();
-
-        } catch (EntidadeNaoEncontradaException e) {
-            return ResponseEntity.notFound().build();
-
-        } catch (EntidadeEmUsoException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT)
-                    .body(e.getMessage());
-        }
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void remover(@PathVariable Long stateId) {
+        stateRegisterService.excluir(stateId);
     }
 }

@@ -1,29 +1,25 @@
 package com.tuyo.tuyofood.api.controller;
 
-import ch.qos.logback.core.joran.spi.ConsoleTarget;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tuyo.tuyofood.domain.entity.Restaurant;
-import com.tuyo.tuyofood.domain.exception.EntidadeNaoEncontradaException;
 import com.tuyo.tuyofood.domain.repository.RestaurantRepository;
 import com.tuyo.tuyofood.domain.service.RestaurantRegisterService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 /* 1. ObjectMapper: converte objetos json em java e vice-versa
-*  2. paymentForms: é adicionado para que as outras formas não sejam deletadas sem necessidade.
-*  3. address: é adicionado para que os outros dados não sejam deletados sem necessidade.
-*  4. dataCadastro: também sofre o mesmo processo de address e paymentForms.
-*  5. O uso dos três acima como parâmetro, evita o erro:
-*  'ERROR: null value in column "data_cadastro" violates not-null constraint' */
+ *  2. paymentForms: é adicionado para que as outras formas não sejam deletadas sem necessidade.
+ *  3. address: é adicionado para que os outros dados não sejam deletados sem necessidade.
+ *  4. dataCadastro: também sofre o mesmo processo de address e paymentForms.
+ *  5. O uso dos três acima como parâmetro, evita o erro:
+ *  'ERROR: null value in column "data_cadastro" violates not-null constraint' */
 
 @RestController
 @RequestMapping(value = "/restaurants")
@@ -40,77 +36,32 @@ public class RestaurantController {
         return restaurantRepository.findAll();
     }
 
-/*  Estratégia de Lazy Loading:
-
-    @GetMapping
-    public List<Restaurant> listar() {
-        List<Restaurant> restaurants = restaurantRepository.findAll();
-
-        //Formas de pagamento para o primeiro restaurant que está no índice 0 (id = 0)
-        System.out.println(restaurants.get(0).getNome());
-        restaurants.get(0).getPaymentForms().forEach(System.out::println);
-
-        //Formas de pagamento para o segundo restaurant que está no índice 1 (id = 1)
-        System.out.println(restaurants.get(1).getNome());
-        restaurants.get(1).getPaymentForms().forEach(System.out::println);
-
-        return restaurants;
-    }*/
-
     @GetMapping("/{restaurantId}")
-    public ResponseEntity<Restaurant> buscar(@PathVariable Long restaurantId) {
-        Optional<Restaurant> restaurant = restaurantRepository.findById(restaurantId);
-
-        if (restaurant.isPresent()) {
-            return ResponseEntity.ok(restaurant.get());
-        }
-
-        return ResponseEntity.notFound().build();
+    public Restaurant buscar(@PathVariable Long restaurantId) {
+        return restaurantRegisterService.buscarOuFalhar(restaurantId);
     }
 
     @PostMapping
-    public ResponseEntity<?> adicionar(@RequestBody Restaurant restaurant) {
-        try {
-            restaurant = restaurantRegisterService.salvar(restaurant);
-
-            return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(restaurant);
-        } catch (EntidadeNaoEncontradaException e) {
-            return ResponseEntity.badRequest()
-                    .body(e.getMessage());
-        }
+    @ResponseStatus(HttpStatus.CREATED)
+    public Restaurant adicionar(@RequestBody Restaurant restaurant) {
+        return restaurantRegisterService.salvar(restaurant);
     }
 
     @PutMapping("/{restaurantId}")
-    public ResponseEntity<?> atualizar(@PathVariable Long restaurantId,
-                                       @RequestBody Restaurant restaurant) {
-        try {
-            Restaurant restaurantAtual = restaurantRepository.findById(restaurantId).orElse(null);
+    public Restaurant atualizar(@PathVariable Long restaurantId,
+                                @RequestBody Restaurant restaurant) {
+        Restaurant restaurantAtual = restaurantRegisterService.buscarOuFalhar(restaurantId);
 
-            if (restaurantAtual != null) {
-                BeanUtils.copyProperties(restaurant, restaurantAtual, "id", "paymentForms", "address",
-                        "dataCadastro", "menus");
+        BeanUtils.copyProperties(restaurant, restaurantAtual,
+                "id", "formasPagamento", "endereco", "dataCadastro", "produtos");
 
-                restaurantAtual = restaurantRegisterService.salvar(restaurantAtual);
-                return ResponseEntity.ok(restaurantAtual);
-            }
-
-            return ResponseEntity.notFound().build();
-
-        } catch (EntidadeNaoEncontradaException e) {
-            return ResponseEntity.badRequest()
-                    .body(e.getMessage());
-        }
+        return restaurantRegisterService.salvar(restaurantAtual);
     }
 
     @PatchMapping("/{restaurantId}")
-    public ResponseEntity<?> atualizarParcial(@PathVariable Long restaurantId,
-                                              @RequestBody Map<String, Object> campos) {
-        Restaurant restaurantAtual = restaurantRepository.findById(restaurantId).orElse(null);
-
-        if (restaurantAtual == null) {
-            return ResponseEntity.notFound().build();
-        }
+    public Restaurant atualizarParcial(@PathVariable Long restaurantId,
+                                       @RequestBody Map<String, Object> campos) {
+        Restaurant restaurantAtual = restaurantRegisterService.buscarOuFalhar(restaurantId);
 
         merge(campos, restaurantAtual);
 
