@@ -1,1 +1,1 @@
-# EXCECOES_Constants_para_Messagens_HTTP
+# Catch_usando_com_Exceptions - Capturando Exceptions
