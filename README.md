@@ -1,1 +1,1 @@
-# THROW_usando_com_Exceptions
+# THROW_usando_com_Exceptions - Relançando exceptions.
