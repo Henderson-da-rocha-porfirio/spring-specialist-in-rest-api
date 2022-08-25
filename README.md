@@ -2,3 +2,5 @@
 ````
 BusinessException(e.getMessage(), e) = e.getMessage(): message e e: causa
 ````
+
+## A rastreabilidade é vista através do console. Seja Postman ou outro.
